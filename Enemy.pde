@@ -1,37 +1,42 @@
-class Enemy{
-	int x = 0;
-	int y = 0;
-	int type;
-	int speed = 5;
+class Enemy
+{
+  int x = 0;
+  int y = 0;
+  int type;
+  int speed = 5;
 
-	PImage enemyImg;
-	Enemy(int x, int y, int type) {
-		this.x = x;
-		this.y = y;
-		this.type = type;
-		enemyImg = loadImage("img/enemy.png");
-		
+  PImage enemyImg;
+  Enemy(int x, int y, int type)
+  {
+    this.x = x;
+    this.y = y;
+    this.type = type;
+    enemyImg = loadImage("img/enemy.png");
 	}
-	void move() {
-		this.x+= 5;	
+
+  void move()
+  {
+    this.x+= 5;	
 	}
 
 	void draw()
 	{
-		image(enemyImg, x, y);
+    image(enemyImg, x, y);
 	}
 
 	boolean isCollideWithFighter()
 	{
-		return false;
+    if (isHit(this.x, this.y, this.enemyImg.width, this.enemyImg.height, fighter.x, fighter.y, fighter.fighterImg.width, fighter.fighterImg.height)) 
+      return true;
+    return false;
 	}
 
 	boolean isOutOfBorder()
 	{
-		return false;
+    if(this.x>=640)
+      return true;
+    return false;
 	}
-
-
 }
 
 void addEnemy(int type)
@@ -50,15 +55,16 @@ void addEnemy(int type)
 			addDiamondEnemy();
 			break;
 		case EnemysShowingType.STRONGLINE:
-			addEnemyStrong();
-			break;
+		
+;			break;
 	}
-	time = millis();
+  time = millis();
 }
 
 void addStraightEnemy()
 {
-	float t = random(height - 60);
+
+  ;	float t = random(height - 60);
 	int h = int(t);
 	for (int i = 0; i < 5; ++i) {
 		enemys[i] = new Enemy( (i+1)*-80, h , FlightType.ENEMY);
@@ -95,11 +101,5 @@ void addDiamondEnemy()
 			i++;
 			x_axis++;
 		}
-	}
-}
-void addEnemyStrong()
-{
-	for (int i = 0; i < 5; ++i) {
-		enemys[i] = new Enemy(0, 40+ i * 85, FlightType.ENEMYSTRONG);
 	}
 }
