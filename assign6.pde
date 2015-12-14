@@ -209,6 +209,7 @@ void keyReleased()
         bullets = new Bullet[100];
         for(int i=0; i<shootCount; i++)
           bullets[i] = null;
+        currentType = EnemysShowingType.STRAIGHT;
       default : break ;
     }
   }
